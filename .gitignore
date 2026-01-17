@@ -28,6 +28,8 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 .angular/*
+./environments/environments.ts
+
 
 # Miscellaneous
 /.angular/cache
