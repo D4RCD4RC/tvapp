@@ -1,6 +1,5 @@
 export const environment = {
     baseUrl: '',
     baseUrlImage: '',
-    apikey: '',
-    apiToken: '',
+    api_key: 'Tu Api Key',
 };
