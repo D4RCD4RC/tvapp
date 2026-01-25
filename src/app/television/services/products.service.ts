@@ -5,15 +5,31 @@ import { TvResponse } from '../interfaces/tv.interface';
 import { Observable, tap } from 'rxjs';
 
 const baseUrl = environment.baseUrl
-const apiKey = environment.api_key
+const api_key = environment.api_key
+
+interface Options {
+    page?: number;
+    language?: string;
+    api_key?: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class TvService {
     private http = inject(HttpClient);
 
-    getTvShows(): Observable<TvResponse> {
-        return this.http.get<TvResponse>(`${baseUrl}/popular?language=es-ES&page=1&api_key=${apiKey}`)
-            .pipe(tap((resp) => console.log(resp)))
-    }
+    getTvShows(options: Options): Observable<TvResponse> {
+        const { page = 1, language = 'es-ES' } = options;
 
-} 
+        return this.http.get<TvResponse>(`${baseUrl}/popular`, {
+            params: {
+                language,
+                page,
+                api_key,
+            }
+        }).pipe(
+            tap((res) => {
+                console.log(res);
+            })
+        )
+    }
+}  
