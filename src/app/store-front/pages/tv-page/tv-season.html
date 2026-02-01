@@ -1,0 +1,44 @@
+@if (tvResource.isLoading()) {
+  <div class="flex justify-center items-center h-screen">
+    <span class="loading loading-spinner loading-lg text-accent"></span>
+  </div>
+}
+
+@if (tvResource.hasValue()) {
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 p-6">
+    @for (temporada of tvResource.value().seasons; track temporada.id) {
+      @if (temporada.season_number > 0) {
+        <div class="card bg-base-100 shadow-xl animate-fade-in border border-base-200">
+          <figure class="px-4 pt-4">
+            <img
+              [src]="temporada.poster_path | tvImage"
+              [alt]="temporada.name"
+              class="rounded-xl object-cover h-64 w-full"
+            />
+          </figure>
+
+          <div class="card-body items-center text-center">
+            <h2 class="card-title text-accent">{{ temporada.name }}</h2>
+
+            <p class="text-sm line-clamp-3">
+              {{
+                temporada.overview
+                  ? (temporada.overview | slice: 0 : 100)
+                  : 'Sin descripción disponible.'
+              }}...
+            </p>
+
+            <div class="flex flex-col gap-2 mt-2">
+              <span class="badge badge-outline">{{ temporada.episode_count }} Episodios</span>
+              <span class="text-xs opacity-60">Lanzamiento: {{ temporada.air_date }}</span>
+            </div>
+
+            <div class="card-actions mt-4">
+              <button class="btn btn-primary btn-sm">Ver Temporada</button>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </div>
+}

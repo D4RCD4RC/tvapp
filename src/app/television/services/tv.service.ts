@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { TvResponse } from '../interfaces/tv.interface';
 import { Observable, tap } from 'rxjs';
+import { TvDetail } from '../interfaces/tv-detail.interface';
 
 const baseUrl = environment.baseUrl
 const api_key = environment.api_key
@@ -32,4 +33,19 @@ export class TvService {
             })
         )
     }
+
+    getTvShowByid(id: string): Observable<TvDetail> {
+        return this.http.get<TvDetail>(`${baseUrl}/${id}`, {
+            params: {
+                api_key,
+                language: 'es-ES',
+            }
+        }).pipe(
+            tap((res) => {
+                console.log(res);
+            })
+        )
+    }
+
+
 }  

@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { StoreFrontLayout } from "./layouts/store-front-layout/store-front-layout";
 import { HomePage } from "./pages/home-page/home-page";
 import { GenderPage } from "./pages/gender-page/gender-page";
-import { TvPage } from "./pages/tv-page/tv-page";
+import { TvSeason } from "./pages/tv-page/tv-season";
 import { NotFoundPage } from "./pages/not-found-page/not-found-page";
 
 export const storeFrontRoutes: Routes = [
@@ -19,8 +19,8 @@ export const storeFrontRoutes: Routes = [
                 component: GenderPage,
             },
             {
-                path: 'tv/:idSlug',
-                component: TvPage,
+                path: 'tv/:id',
+                component: TvSeason,
             },
             {
                 path: '**',

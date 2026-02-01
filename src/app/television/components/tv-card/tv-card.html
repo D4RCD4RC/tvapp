@@ -1,9 +1,19 @@
 <div class="card bg-base-100 shadow-xl animate-fade-in">
   <figure class="px-10 pt-10">
-    <img [src]="tv().poster_path | tvImage" [alt]="tv().name" class="rounded-xl" />
+    <img
+      [src]="tv().poster_path | tvImage"
+      [alt]="tv().name"
+      [title]="tv().name"
+      class="rounded-xl"
+    />
   </figure>
-  <div class="card-body items-center text-center text-lg">
-    <h2 class="card-title text-accent">{{ tv().name }}</h2>
+  <div class="card-body items-center text-center">
+    <h2
+      class="card-title text-accent text-lg hover:underline cursor-pointer"
+      [routerLink]="['/tv', tv().id]"
+    >
+      {{ tv().name }}
+    </h2>
     <p>
       {{ tv().overview | slice: 0 : 100 }}
     </p>
