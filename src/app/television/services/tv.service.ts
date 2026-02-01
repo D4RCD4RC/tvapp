@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environments';
 import { TvResponse } from '../interfaces/tv.interface';
@@ -12,6 +12,7 @@ interface Options {
     page?: number;
     language?: string;
     api_key?: string;
+
 }
 
 @Injectable({ providedIn: 'root' })
@@ -21,7 +22,7 @@ export class TvService {
     getTvShows(options: Options): Observable<TvResponse> {
         const { page = 1, language = 'es-ES' } = options;
 
-        return this.http.get<TvResponse>(`${baseUrl}/popular`, {
+        return this.http.get<TvResponse>(`${baseUrl}/tv/popular`, {
             params: {
                 language,
                 page,
@@ -35,7 +36,7 @@ export class TvService {
     }
 
     getTvShowByid(id: string): Observable<TvDetail> {
-        return this.http.get<TvDetail>(`${baseUrl}/${id}`, {
+        return this.http.get<TvDetail>(`${baseUrl}/tv/${id}`, {
             params: {
                 api_key,
                 language: 'es-ES',
@@ -45,6 +46,29 @@ export class TvService {
                 console.log(res);
             })
         )
+    }
+
+    getTvShowsByGenre(options: {
+        genreIds: number[];   // 👈 array
+        page?: number;
+        language?: string;
+    }): Observable<TvResponse> {
+
+        const {
+            genreIds,
+            page = 1,
+            language = 'es-ES',
+        } = options;
+
+        return this.http.get<TvResponse>(`${baseUrl}/discover/tv`, {
+            params: {
+                api_key,
+                language,
+                page,
+                with_genres: genreIds.join(','), // 👈 clave
+                sort_by: 'popularity.desc',
+            }
+        });
     }
 
 

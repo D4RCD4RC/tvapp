@@ -1,1 +1,10 @@
-<p>gender-page works!</p>,
+<h1 class="text-3xl font-bold">Television</h1>
+<h2 class="text-xl mb-5">Para toda la familia</h2>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-3">
+  @for (tv of tvResource.value()?.results; track $index) {
+    <tv-card [tv]="tv" />
+  } @empty {
+    <p>No hay programas de television</p>
+  }
+</div>

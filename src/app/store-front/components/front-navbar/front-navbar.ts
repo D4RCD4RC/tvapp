@@ -5,10 +5,5 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'front-navbar',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './front-navbar.html',
-  styles: `
-    :host {
-      display: block;
-    }
-  `,
 })
 export class FrontNavbar { }

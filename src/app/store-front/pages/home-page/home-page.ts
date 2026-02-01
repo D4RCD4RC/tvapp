@@ -12,11 +12,11 @@ const api_key = environment.api_key;
   templateUrl: './home-page.html',
 })
 export class HomePage {
-  TvService = inject(TvService);
+  tvService = inject(TvService);
 
   tvResource = rxResource({
     params: () => ({}),
-    stream: ({ params }) => this.TvService.getTvShows({
+    stream: ({ params }) => this.tvService.getTvShows({
       page: 1,
       language: 'es-ES',
       api_key: api_key,
