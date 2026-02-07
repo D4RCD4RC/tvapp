@@ -1,0 +1,28 @@
+<div class="join flex justify-center items-center mt-4 mb-10">
+  @if (activePage() > 3) {
+    <a class="join-item btn" [routerLink]="[]" [queryParams]="{ page: 1 }">1</a>
+    <button class="join-item btn btn-disabled">...</button>
+  }
+
+  @for (page of getPagesList(); track page) {
+    <a
+      class="join-item btn"
+      [class.btn-primary]="page === activePage()"
+      [routerLink]="[]"
+      [queryParams]="{ page }"
+    >
+      {{ page }}
+    </a>
+  }
+
+  @if (activePage() < Math.min(totalPages(), 500) - 2) {
+    <button class="join-item btn btn-disabled">...</button>
+    <a
+      class="join-item btn"
+      [routerLink]="[]"
+      [queryParams]="{ page: Math.min(totalPages(), 500) }"
+    >
+      {{ Math.min(totalPages(), 500) }}
+    </a>
+  }
+</div>

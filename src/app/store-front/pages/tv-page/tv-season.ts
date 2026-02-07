@@ -2,19 +2,14 @@ import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TvService } from '../../../television/services/tv.service';
 import { rxResource } from '@angular/core/rxjs-interop';
-import { TvImagePipe } from "../../../television/pipes/tv-image.pipe";
-import { SlicePipe } from '@angular/common';
 import { TvDetail } from '../../../television/interfaces/tv-detail.interface';
+import { SeasonCard } from "../../../television/components/season-card/season-card";
 
 @Component({
   selector: 'tv-season',
-  imports: [TvImagePipe, SlicePipe],
+  imports: [SeasonCard],
   templateUrl: './tv-season.html',
-  styles: `
-    :host {
-      display: block;
-    }
-  `,
+
 })
 export class TvSeason {
   activatedRoute = inject(ActivatedRoute);

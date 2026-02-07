@@ -1,0 +1,32 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-3">
+  @for (temporada of tv().seasons; track temporada.id) {
+    <div class="card bg-base-100 shadow-xl animate-fade-in">
+      <figure class="px-10 pt-10">
+        <img
+          [src]="temporada.poster_path | tvImage"
+          [alt]="temporada.name"
+          class="rounded-xl shadow-lg"
+        />
+      </figure>
+
+      <div class="card-body items-center text-center">
+        <h2 class="card-title text-accent">
+          {{ temporada.name }}
+          <div class="badge badge-secondary">{{ temporada.episode_count }} Eps</div>
+        </h2>
+
+        <p class="text-sm">
+          @if (temporada.overview) {
+            {{ temporada.overview | slice: 0 : 120 }}...
+          } @else {
+            No hay descripción disponible para esta temporada.
+          }
+        </p>
+
+        <div class="card-actions justify-end mt-4">
+          <span class="text-xs opacity-50">Estreno: {{ temporada.air_date }}</span>
+        </div>
+      </div>
+    </div>
+  }
+</div>
