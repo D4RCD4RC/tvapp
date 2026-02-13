@@ -5,16 +5,19 @@ import { filter, map } from 'rxjs';
 import { TvService } from '../../../television/services/tv.service';
 import { TvCard } from "../../../television/components/tv-card/tv-card";
 import { TV_GENRES_MAP } from '../../../helpers/mapaIds';
+import { Pagination } from "../../../shared/components/pagination/pagination";
+import { PaginationService } from '../../../shared/components/pagination/pagination.service';
 
 @Component({
   selector: 'gender-page',
-  imports: [TvCard],
+  imports: [TvCard, Pagination],
   templateUrl: './gender-page.html',
 })
 
 export class GenderPage {
   tvService = inject(TvService);
   route = inject(ActivatedRoute);
+  paginationService = inject(PaginationService);
 
   genreIds = toSignal(
     this.route.params.pipe(
@@ -24,10 +27,11 @@ export class GenderPage {
   );
 
   tvResource = rxResource({
-    params: () => ({ genreIds: this.genreIds() }),
+    params: () => ({ genreIds: this.genreIds(), page: this.paginationService.currentPage() }),
     stream: ({ params }) =>
       this.tvService.getTvShowsByGenre({
-        genreIds: params.genreIds!
+        genreIds: params.genreIds!,
+        page: params.page!
       })
   });
 }

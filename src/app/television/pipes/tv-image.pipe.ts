@@ -9,18 +9,22 @@ const baseUrl = environment.baseUrlImage;
 })
 
 export class TvImagePipe implements PipeTransform {
-    transform(value: string | string[]): string {
-        if (typeof value === 'string') {
-            return `${baseUrl}${value}`;
+    transform(path: string | null | undefined): string {
+
+        // Si no existe → usar imagen del public
+        if (!path || path.trim().length === 0) {
+            return '/no-image.png';
         }
 
-        const image = value.at(0);
+        // Si ya es URL completa → retornar
+        if (path.startsWith('http')) return path;
 
-        if (!image) {
-            return './images/no-image.png'
+        // Si empieza con / → concatenar
+        if (path.startsWith('/')) {
+            return `${environment.baseUrlImage}${path}`;
         }
 
-        return `${baseUrl}${image}`
-
+        // Si viene sin "/" → caso raro
+        return `${environment.baseUrlImage}/${path}`;
     }
 }

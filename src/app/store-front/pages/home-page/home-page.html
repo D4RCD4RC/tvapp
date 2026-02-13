@@ -1,14 +1,21 @@
 <h1 class="text-3xl font-bold">Television</h1>
-<h2 class="text-xl mb-5">Para toda la familia {{ currentPage() }}</h2>
-
-@if (tvResource.value()) {
-  <pagination [totalPages]="tvResource.value()?.total_pages ?? 0" [currentPage]="currentPage()" />
-}
+<h2 class="text-xl mb-5">Para toda la familia</h2>
 
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-2 gap-3">
-  @for (tv of tvResource.value()?.results; track $index) {
+  @for (tv of tvResource.value()?.results; track tv.id) {
     <tv-card [tv]="tv" />
   } @empty {
-    <p>No hay programas de television</p>
+    @if (tvResource.isLoading()) {
+      <p>Cargando programas...</p>
+    } @else {
+      <p>No se encontraron resultados en esta página.</p>
+    }
   }
+</div>
+
+<div class="mt-10 mb-10">
+  <pagination
+    [totalPages]="tvResource.value()?.total_pages ?? 500"
+    [currentPage]="paginationService.currentPage()"
+  />
 </div>

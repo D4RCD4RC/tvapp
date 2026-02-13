@@ -4,7 +4,7 @@
       [src]="tv().poster_path | tvImage"
       [alt]="tv().name"
       [title]="tv().name"
-      class="rounded-xl"
+      class="rounded-xl object-cover h-64 w-full"
     />
   </figure>
   <div class="card-body items-center text-center">
@@ -12,10 +12,14 @@
       class="card-title text-accent text-lg hover:underline cursor-pointer"
       [routerLink]="['/tv', tv().id]"
     >
-      {{ tv().name }}
+      {{ tv().name || 'Sin título' }}
     </h2>
-    <p>
-      {{ tv().overview | slice: 0 : 100 }}
+    <p class="text-sm">
+      @if (tv().overview) {
+        {{ tv().overview | slice: 0 : 100 }}...
+      } @else {
+        No hay descripción disponible para esta serie.
+      }
     </p>
     <div class="card-actions justify-end">
       <a class="link link-accent" [routerLink]="['/tv', tv().id]">Ver</a>

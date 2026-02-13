@@ -8,3 +8,10 @@
     <p>No hay programas de television</p>
   }
 </div>
+
+<div class="mt-10 mb-10">
+  <pagination
+    [totalPages]="tvResource.value()?.total_pages ?? 500"
+    [currentPage]="paginationService.currentPage()"
+  />
+</div>
