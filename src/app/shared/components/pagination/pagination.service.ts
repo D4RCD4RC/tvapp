@@ -15,7 +15,7 @@ export class PaginationService {
         this.activatedRouter.queryParamMap.pipe(
             map((params) => {
                 const page = Number(params.get('page'));
-                // Si no es número, es menor a 1 o mayor a 500 (límite TMDB), volvemos a 1
+                // Si no es número, es menor a 1 o mayor a 500 (límite de TMDB), volvemos a 1
                 if (isNaN(page) || page < 1) {
                     return 1;
                 }
