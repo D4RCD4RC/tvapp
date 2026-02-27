@@ -7,10 +7,11 @@ import { TvCard } from "../../../television/components/tv-card/tv-card";
 import { TV_GENRES_MAP } from '../../../helpers/mapaIds';
 import { Pagination } from "../../../shared/components/pagination/pagination";
 import { PaginationService } from '../../../shared/components/pagination/pagination.service';
+import { Buscar } from "../../../shared/components/buscar/buscar";
 
 @Component({
   selector: 'gender-page',
-  imports: [TvCard, Pagination],
+  imports: [TvCard, Pagination, Buscar],
   templateUrl: './gender-page.html',
 })
 

@@ -6,6 +6,9 @@ import { environment } from '../../../../environments/environments';
 import { Pagination } from "../../../shared/components/pagination/pagination";
 import { PaginationService } from '../../../shared/components/pagination/pagination.service';
 
+
+
+
 const api_key = environment.api_key;
 
 @Component({
@@ -23,7 +26,6 @@ export class HomePage {
       page: params.page,
       language: 'es-ES',
       api_key: api_key,
-
     })
   })
 }
