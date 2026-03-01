@@ -87,4 +87,36 @@ export class TvService {
                 tap((res) => this.tvCache.set(cacheKeyGenre, res)),
             );
     }
+
+    getTvShowsBySearch(options: {
+        query: string;
+        page?: number;
+        language?: string;
+    }): Observable<TvResponse> {
+        const { query, page = 1, language = 'es-ES' } = options;
+
+        // Generamos la key de caché siguiendo tu patrón
+        const cacheKeySearch = `tv-search-${query}-${language}-${page}`;
+
+        if (this.tvCache.has(cacheKeySearch)) {
+            return of(this.tvCache.get(cacheKeySearch)!);
+        }
+
+        return this.http
+            .get<TvResponse>(`${baseUrl}/search/tv`, {
+                params: {
+                    api_key,
+                    language,
+                    page,
+                    query,
+                },
+            })
+            .pipe(
+                // Almacenamos en el caché antes de retornar
+                tap((res) => this.tvCache.set(cacheKeySearch, res))
+            );
+    }
 }
+
+
+
