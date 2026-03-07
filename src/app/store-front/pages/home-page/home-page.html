@@ -5,15 +5,22 @@
     @if (tvResource.isLoading()) {
       <p>Cargando programas...</p>
     } @else {
-      <p>No se encontraron resultados en esta página.</p>
+      <p>
+        No se encontro nada con este titulo: "<span class="text-primary">{{
+          searchService.query()
+        }}</span
+        >"
+      </p>
     }
   }
 </div>
 
-<div class="mt-10 mb-10">
-  <pagination
-    class="fixed bottom-0 z-50 w-full bg-base-100 shadow-sm"
-    [totalPages]="tvResource.value()?.total_pages ?? 500"
-    [currentPage]="paginationService.currentPage()"
-  />
-</div>
+@if (totalPages() > 1) {
+  <div class="mt-10 mb-10">
+    <pagination
+      class="fixed bottom-0 z-50 w-full bg-base-100 shadow-sm"
+      [totalPages]="totalPages()"
+      [currentPage]="paginationService.currentPage()"
+    />
+  </div>
+}

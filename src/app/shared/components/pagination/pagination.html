@@ -1,5 +1,5 @@
 <div class="join flex justify-center items-center mt-1 mb-2">
-  @if (activePage() > 3) {
+  @if (activePage() > 3 && totalPages() > 7) {
     <a class="join-item btn" [routerLink]="[]" [queryParams]="{ page: 1 }">1</a>
     <button class="join-item btn btn-disabled">...</button>
   }
@@ -15,7 +15,7 @@
     </a>
   }
 
-  @if (activePage() < Math.min(totalPages(), 500) - 2) {
+  @if (activePage() < Math.min(totalPages(), 500) - 2 && totalPages() > 7) {
     <button class="join-item btn btn-disabled">...</button>
     <a
       class="join-item btn"

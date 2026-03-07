@@ -1,7 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
-import { TvService } from '../../../television/services/tv.service';
-import { rxResource, toObservable } from '@angular/core/rxjs-interop';
-import { debounceTime, distinctUntilChanged, map, of, switchMap, tap } from 'rxjs';
+import { Component, inject } from '@angular/core';
+import { SearchService } from '../../../television/services/search.service';
 
 @Component({
   selector: 'buscar',
@@ -9,27 +7,17 @@ import { debounceTime, distinctUntilChanged, map, of, switchMap, tap } from 'rxj
   templateUrl: './buscar.html',
 })
 export class Buscar {
-  private tvService = inject(TvService);
-  query = signal('');
 
-  debouncedQuery$ = toObservable(this.query).pipe(
-    debounceTime(500),
-    distinctUntilChanged()
-  );
+  searchService = inject(SearchService);
 
-  tvSearchResource = rxResource({
-    stream: () =>
-      this.debouncedQuery$.pipe(
-        switchMap(q =>
-          q.length < 2
-            ? of([])
-            : this.tvService.getTvShowsBySearch({ query: q }).pipe(
-              map(res => res.results),
-              tap(res => console.log(res))
+  // Actualiza el query cuando el usuario escribe
+  update(value: string) {
+    this.searchService.query.set(value);
+  }
 
-            )
-        )
-      )
-  });
 
+  // Limpia el input y resetea búsqueda
+  clear() {
+    this.searchService.query.set(''); // Limpia el input
+  }
 }

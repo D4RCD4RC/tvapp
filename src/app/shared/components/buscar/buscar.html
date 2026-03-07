@@ -1,9 +1,22 @@
 <div class="relative w-full max-w-sm">
+  <!-- Input de búsqueda -->
   <input
     type="text"
     placeholder="Buscar..."
     class="input input-bordered w-full"
-    [value]="query()"
-    (input)="query.set($any($event.target).value)"
+    [value]="searchService.query()"
+    (input)="update($any($event.target).value)"
   />
+
+  <!-- Botón de limpiar (X), aparece solo si hay texto) -->
+  @if (searchService.query()) {
+    <button
+      type="button"
+      (click)="clear()"
+      class="absolute right-2 top-1/2 -translate-y-1/2 btn btn-sm btn-square btn-ghost"
+      title="Limpiar búsqueda"
+    >
+      ✕
+    </button>
+  }
 </div>

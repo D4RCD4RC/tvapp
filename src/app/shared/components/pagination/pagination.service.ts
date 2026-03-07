@@ -9,7 +9,7 @@ export class PaginationService {
 
 
     private activatedRouter = inject(ActivatedRoute);
-    private router = inject(Router);
+    router = inject(Router);
 
     currentPage = toSignal(
         this.activatedRouter.queryParamMap.pipe(

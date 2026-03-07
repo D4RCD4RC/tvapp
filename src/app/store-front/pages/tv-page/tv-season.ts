@@ -4,6 +4,7 @@ import { TvService } from '../../../television/services/tv.service';
 import { rxResource } from '@angular/core/rxjs-interop';
 import { TvDetail } from '../../../television/interfaces/tv-detail.interface';
 import { SeasonCard } from "../../../television/components/season-card/season-card";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'tv-season',
@@ -14,6 +15,7 @@ import { SeasonCard } from "../../../television/components/season-card/season-ca
 export class TvSeason {
   activatedRoute = inject(ActivatedRoute);
   tvService = inject(TvService);
+  location = inject(Location);
 
   tvId: string = this.activatedRoute.snapshot.params['id'];
 
@@ -21,5 +23,10 @@ export class TvSeason {
     params: () => ({ id: this.tvId }),
     stream: ({ params }) => this.tvService.getTvShowByid(params.id),
   })
+
+  // Método para volver
+  goBack() {
+    this.location.back();
+  }
 
 }

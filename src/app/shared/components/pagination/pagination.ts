@@ -22,19 +22,23 @@ export class Pagination {
   getPagesList = computed(() => {
     // Determinamos el techo: el menor entre lo que dice la API y el límite de 500
     const maxAllowed = Math.min(this.totalPages(), this.MAX_PAGES);
-
     const current = this.activePage();
     const range = 2; // Cuántas páginas mostrar a los lados de la actual
 
+    // CASO PEQUEÑO: mostrar todas las páginas si son ≤7
+    if (maxAllowed <= 7) {
+      return Array.from({ length: maxAllowed }, (_, i) => i + 1);
+    }
+
+    // CASO GRANDE: lógica de ventana con ...
     let start = Math.max(1, current - range);
     let end = Math.min(maxAllowed, current + range);
 
-    // Ajuste para mostrar siempre la misma cantidad de botones si es posible
     if (current <= range) {
-      end = Math.min(maxAllowed, 5);
+      end = 5;
     }
     if (current > maxAllowed - range) {
-      start = Math.max(1, maxAllowed - 4);
+      start = maxAllowed - 4;
     }
 
     const pages = [];
