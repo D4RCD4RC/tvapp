@@ -8,13 +8,12 @@
 
 @if (tvResource.hasValue()) {
   <h1 class="text-2xl text-center font-bold">
-    <a
-      class="btn btn-ghost text-xl pointer"
-      (click)="goBack()"
-      class="flex justify-end items-center gap-2"
-    >
-      <span class="text-secondary hover:text-primary cursor-pointer"> 🢨 Volver </span> </a
-    >{{ tvResource.value().name }}
+    <a class="btn btn-ghost text-xl pointer" class="flex justify-between">
+      <span>{{ tvResource.value().name }}</span>
+      <span class="text-secondary hover:text-primary cursor-pointer" (click)="goBack()">
+        🢦 Volver
+      </span>
+    </a>
   </h1>
   <season-card [tv]="tvResource.value()" />
 }
