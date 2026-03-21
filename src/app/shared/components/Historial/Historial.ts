@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { SearchService } from '../../../television/services/search.service';
 
 @Component({
   selector: 'btn-historial',
@@ -10,4 +11,6 @@ import { Component } from '@angular/core';
     }
   `,
 })
-export class Historial { }
+export class Historial {
+  searchService = inject(SearchService);
+}
