@@ -9,7 +9,7 @@ Una aplicación web moderna y profesional construida con **Angular 21** para bus
 - **Gestión de Estado Reactivo**: Implementación limpia y declarativa gracias al nuevo `rxResource` y los _Signals_ de Angular (`computed`, `inject`), combinados con RxJS para un flujo asíncrono y predecible.
 - **Interfaz Moderna (UI)**: Diseño responsivo, estético y en modo oscuro impulsado con la última versión de **TailwindCSS v4** y los increíbles componentes de **daisyUI v5**.
 
-## 🛠️ Tecnologías Empleadas
+## Tecnologías Empleadas
 
 - **Framework**: Angular 21
 - **Lenguaje**: TypeScript
@@ -17,14 +17,14 @@ Una aplicación web moderna y profesional construida con **Angular 21** para bus
 - **Estilos**: TailwindCSS v4, daisyUI v5
 - **Pruebas**: Vitest
 
-## 🚀 Requisitos Previos
+## Requisitos Previos
 
 Antes de comenzar, asegúrate de tener instalado en tu máquina:
 
 - [Node.js](https://nodejs.org/es/) (v18 o superior)
 - [npm](https://www.npmjs.com/) (Gestor de paquetes, normalmente se instala con Node.js)
 
-## 📦 Instalación y Configuración
+## Instalación y Configuración
 
 1. **Clona el repositorio** o descarga el código fuente del proyecto:
 
@@ -68,7 +68,7 @@ npm run build
 
 Los archivos minificados y optimizados se generarán en la ruta configurada (generalmente `dist/`).
 
-## 🧪 Pruebas (Testing)
+## Pruebas (Testing)
 
 El proyecto utiliza Vitest para las pruebas ágiles. Para ejecutarlas:
 
@@ -76,7 +76,7 @@ El proyecto utiliza Vitest para las pruebas ágiles. Para ejecutarlas:
 npm test
 ```
 
-## 📂 Estructura Principal del Proyecto
+## Estructura Principal del Proyecto
 
 Una vista rápida a la organización del código:
 

@@ -30,6 +30,6 @@ export class Buscar {
 
   // Limpia el input y resetea búsqueda
   clear() {
-    this.searchService.query.set(''); // Limpia el input
+    this.searchService.query.set('');
   }
 }

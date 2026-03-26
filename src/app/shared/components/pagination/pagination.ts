@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
 
 
 export class Pagination {
-  // Total de páginas que te envía la API (ej. total_pages)
+  // Total de páginas que envía la API (ej. total_pages)
   totalPages = input<number>(0);
   currentPage = input<number>(1);
   protected Math = Math;

@@ -1,9 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { environment } from '../../../environments/environments';
 
-
-const baseUrl = environment.baseUrlImage;
-
 @Pipe({
     name: 'tvImage'
 })
@@ -16,7 +13,7 @@ export class TvImagePipe implements PipeTransform {
             return '/no-image.png';
         }
 
-        // Si ya es URL completa → retornar
+        // Si es URL completa → retornar
         if (path.startsWith('http')) return path;
 
         // Si empieza con / → concatenar

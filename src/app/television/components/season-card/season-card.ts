@@ -6,7 +6,7 @@ import { TvImagePipe } from "../../pipes/tv-image.pipe";
 
 @Component({
   selector: 'season-card',
-  imports: [SlicePipe, TvImagePipe],
+  imports: [TvImagePipe],
   templateUrl: './season-card.html',
 })
 export class SeasonCard {
